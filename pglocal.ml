@@ -31,7 +31,7 @@ let pg_server () =
     method stop = stop ()
     method status = cmdf "PGPORT=%d pg_ctl -D %s status" port dir
     method port = port
-    method conninfo = sprintf "postgresql:///template1?port=%d" port
+    method conninfo = sprintf "postgresql://127.0.0.1:%d/template1?port=%d" port port
   end
 
 let usage () =
