@@ -20,6 +20,8 @@ let pg_server () =
     cmdf "rm -fr %s" dir;
     cmdf "mkdir -p %s" dir;
     cmdf "initdb -D %s" dir;
+    cmdf "mkdir -p %s/var_run/" dir;
+    cmdf "echo \"unix_socket_directories = '%s/var_run/'\" >> %s/postgresql.conf" dir dir;
     cmdf "PGPORT=%d pg_ctl start -l %s/log -D %s" port dir dir;
     say "Starting postgresql test server on port %d with %s" port dir;
   in
